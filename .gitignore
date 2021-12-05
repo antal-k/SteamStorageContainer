@@ -1,0 +1,4 @@
+.env
+.git
+yarn.lock
+node_modules

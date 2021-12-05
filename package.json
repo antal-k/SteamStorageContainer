@@ -1,9 +1,10 @@
 {
-  "name": "StorageBot",
+  "name": "Storage Helper",
   "version": "1.0.0",
-  "description": "Move cases to a storage container",
+  "description": "Move Selected Items to The Storage Units",
   "dependencies": {
     "axios": "^0.21.1",
+    "dotenv": "^10.0.0",
     "globaloffensive": "^2.1.0",
     "steam-totp": "^2.1.1",
     "steam-user": "^4.19.10"
