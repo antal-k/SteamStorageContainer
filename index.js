@@ -5,10 +5,10 @@ const SteamTotp = require('steam-totp');
 
 require('dotenv').config();
 
-const username = process.env.username;
-const password = process.env.password;
-const secret = process.env.secret;
-const storageUnitID = process.env.storageUnitId; // this is the asset id for the storage unit you want to add stuff to
+const username = process.env.STEAM_USERNAME;
+const password = process.env.STEAM_PASSWORD;
+const secret = process.env.TOTP_SECRET;
+const storageUnitID = process.env.STORAGE; // this is the asset id for the storage unit you want to add stuff to
 var itemsToStore = [];
 
 
@@ -70,7 +70,7 @@ async function getItemsFromInventory(){
     }
     let assets = inventory.assets;
     let descriptions = inventory.descriptions;
-    let cases = descriptions.filter(item => item.type === "Base Grade Container"); //change the string here if you want to add other types
+    let cases = descriptions.filter(item => item.name === process.env.ITEM_NAME); 
     let assetids = [];
     if (cases) {
         for (let i in cases) {
