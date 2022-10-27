@@ -62,15 +62,15 @@ function quit() {
     });
 };
 
-async function getItemsFromInventory(){
+async function getItemsFromInventory() {
     let inventory = await getInventory();
-    if(!inventory) {
+    if (!inventory) {
         console.log('Failed to fetch the user inventory.');
         return;
     }
     let assets = inventory.assets;
     let descriptions = inventory.descriptions;
-    let cases = descriptions.filter(item => item.name === process.env.ITEM_NAME); 
+    let cases = descriptions.filter(item => item.name === process.env.ITEM_NAME || process.env.ITEM_NAME === '*');
     let assetids = [];
     if (cases) {
         for (let i in cases) {
@@ -83,13 +83,13 @@ async function getItemsFromInventory(){
     return assetids;
 }
 
-async function getInventory(){
-    try{
+async function getInventory() {
+    try {
         const response = await axios.get(`https://steamcommunity.com/inventory/${user.steamID.getSteamID64()}/730/2?l=english&count=1000`);
         if (response.data && response.data.assets) {
             return response.data;
         }
-    } catch(e) {
+    } catch (e) {
         return false;
     }
 }
@@ -110,5 +110,5 @@ async function insertItems() {
 }
 
 async function sleep(s) {
-    return new Promise(resolve => setTimeout(resolve, s*1000));
+    return new Promise(resolve => setTimeout(resolve, s * 1000));
 }
